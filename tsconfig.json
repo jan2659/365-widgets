@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./build",
+    "strict": true,
+    "baseUrl": "./"
+  },
+  "include": ["./src/**/*", "jest.config.js"],
+  "exclude": ["node_modules"]
+}
