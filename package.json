@@ -6,7 +6,8 @@
   "types": "build/index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint"
   },
   "author": "",
   "license": "ISC",
