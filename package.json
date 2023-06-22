@@ -5,6 +5,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
+    "start": "jest src/index.test.ts",
     "test": "jest",
     "build": "tsc",
     "lint": "eslint"
