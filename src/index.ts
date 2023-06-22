@@ -3,9 +3,6 @@ import store from './app/store'
 import { parseContent, parseLine, parseReference } from './utils/parse'
 
 export const evaluateLogFile = (logContentsStr: string) => {
-    // To Debug uncomment:
-    // store.subscribe(() => { console.log(store.getState()) })
-
     try {
         const lines = parseContent(logContentsStr)
         const reference = parseReference(lines[0])
