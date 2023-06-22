@@ -1,6 +1,16 @@
-import { isMeasuredValueLine, isSensorDetailLine } from './validation'
+import { isMeasuredValueLine, isReferenceLine, isSensorDetailLine } from './validation'
 
 describe('validation', () => {
+    describe('isReferenceLine', () => {
+        test.each([
+            [['reference', '70.0', '45.0', '6'], true],
+            [['no-reference', '70.0', '45.0', '6'], false],
+            [['reference', '70.0', '45.0'], false]
+        ])('should return whether the line represents reference line for field1: %s', (lineArray: string[], isValid: boolean) => {
+            expect(isReferenceLine(lineArray)).toBe(isValid)
+        })
+    })
+
     describe('isSensorDetailLine', () => {
         test.each([
             ['thermometer', 'temp-1', true],

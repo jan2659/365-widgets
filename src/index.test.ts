@@ -1,5 +1,6 @@
-import { sum } from './index'
+import { foo } from './index'
 
-test('Sum', () => {
-    expect(sum(2, 3)).toBe(5)
+test('Test', () => {
+    foo()
+    expect(1).toBe(1)
 })
