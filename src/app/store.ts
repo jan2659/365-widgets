@@ -1,12 +1,7 @@
 import { createStore } from 'redux'
-import { ACTION_TYPES } from './actions'
+import actionTypes from './actionTypes'
 import { SENSOR_EVALUATE_HANDLERS, type SENSOR_TYPES } from '../consts'
-
-interface ReferenceType {
-    temperature: number
-    humidity: number
-    carbonMonoxide: number
-}
+import { type ReferenceType } from '../utils/parse'
 
 interface StateType {
     reference?: ReferenceType
@@ -26,13 +21,13 @@ const initState: StateType = {
 
 const appReducer = (state = initState, action: any) => {
     switch (action.type) {
-        case ACTION_TYPES.ADD_SENSOR:
+        case actionTypes.ADD_SENSOR:
             return {
                 ...state,
                 currentSensorName: action.payload.sensorName,
                 currentSensorType: action.payload.sensorType
             }
-        case ACTION_TYPES.ADD_MEASURED_VALUE:
+        case actionTypes.ADD_MEASURED_VALUE:
             return {
                 ...state,
                 currentMeasuredValues: [
@@ -40,7 +35,7 @@ const appReducer = (state = initState, action: any) => {
                     action.payload.measuredValue
                 ]
             }
-        case ACTION_TYPES.EVALUATE_CURRENT_SENSOR:
+        case actionTypes.EVALUATE_CURRENT_SENSOR:
             if (state.currentSensorName === undefined || state.currentSensorType === undefined || state.reference === undefined) {
                 return state
             }
@@ -52,12 +47,12 @@ const appReducer = (state = initState, action: any) => {
                 currentMeasuredValues: [],
                 output: {
                     ...state.output,
-                    [state.currentSensorName]: SENSOR_EVALUATE_HANDLERS[state.currentSensorType](state.currentMeasuredValues, state.reference)
+                    [state.currentSensorName]: SENSOR_EVALUATE_HANDLERS[state.currentSensorType](state.currentMeasuredValues, state.reference[state.currentSensorType])
                 }
             }
-        case ACTION_TYPES.RESET_APP:
+        case actionTypes.RESET_APP:
             return initState
-        case ACTION_TYPES.SET_REFERENCE:
+        case actionTypes.SET_REFERENCE:
             return {
                 ...state,
                 reference: action.payload

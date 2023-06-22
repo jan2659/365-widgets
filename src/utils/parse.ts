@@ -4,7 +4,7 @@ import { SENSOR_TYPES } from '../consts'
 const LINE_SEPARATOR = ' '
 const CONTENT_SEPARATOR = '\n'
 
-interface ReferenceType {
+export interface ReferenceType {
     [SENSOR_TYPES.thermometer]: number
     [SENSOR_TYPES.humidity]: number
     [SENSOR_TYPES.monoxide]: number
